@@ -1,0 +1,28 @@
+{
+  "name": "mint-stats",
+  "version": "1.0.0",
+  "description": "Helpful utilities for mint.com transactions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scott-schmalz/mint-stats.git"
+  },
+  "keywords": [
+    "mint.com",
+    "mint",
+    "transactions",
+    "utility",
+    "utils",
+    "stats",
+    "statistics"
+  ],
+  "author": "Scott Schmalz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scott-schmalz/mint-stats/issues"
+  },
+  "homepage": "https://github.com/scott-schmalz/mint-stats#readme"
+}
