@@ -1,4 +1,4 @@
-[{
+const data = [{
   "Date": "8/25/2017",
   "Description": "Netflix",
   "Original Description": "Netflix.com",
@@ -33,7 +33,7 @@
   "Description": "Transfer from Savings",
   "Original Description": "Deposit - Online Banking Transfer",
   "Amount": "75.00",
-  "Transaction Type": "credit",
+  "Transaction Type": "debit",
   "Category": "Transfer",
   "Account Name": "Checking",
   "Labels": "",
@@ -52,7 +52,7 @@
   "Date": "9/18/2017",
   "Description": "Thank You Web",
   "Original Description": "Payment Thank You - Web",
-  "Amount": "123.00",
+  "Amount": "100.00",
   "Transaction Type": "credit",
   "Category": "Credit Card Payment",
   "Account Name": "CHASE FREEDOM SIGNATURE",
@@ -68,4 +68,40 @@
   "Account Name": "Visa Credit Card",
   "Labels": "",
   "Notes": ""
-}]
+}, {
+  "Date": "6/15/14",
+  "Description": "IRA Contribution",
+  "Original Description": "Investment Co.",
+  "Amount": "1000",
+  "Transaction Type": "debit",
+  "Category": "Investments",
+  "Account Name": "Checking",
+  "Labels": "",
+  "Notes": ""
+}];
+
+export const dataWithEvenTransferBalance = data.concat([{
+  "Date": "1/20/2011",
+  "Description": "Transfer from Savings",
+  "Original Description": "Deposit - Online Banking Transfer",
+  "Amount": "47.00",
+  "Transaction Type": "credit",
+  "Category": "Transfer",
+  "Account Name": "Checking",
+  "Labels": "",
+  "Notes": ""
+}]);
+
+export const dataWithEvenCreditCardPaymentBalance = data.concat([{
+  "Date": "10/3/2014",
+  "Description": "Thank You Web",
+  "Original Description": "Payment Thank You - Web",
+  "Amount": "23.00",
+  "Transaction Type": "credit",
+  "Category": "Credit Card Payment",
+  "Account Name": "CHASE FREEDOM SIGNATURE",
+  "Labels": "",
+  "Notes": ""
+}]);
+
+export default data;

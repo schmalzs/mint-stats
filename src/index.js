@@ -1,10 +1,16 @@
 import parser from 'csvParser';
-import { removeTransfers } from 'filters';
+import {
+  checkForEvenTransferBalance,
+  checkForEvenCreditCardPaymentBalance,
+} from 'analyzer';
+import filter from 'filter';
 
-parser('/Users/n0199601/Downloads/transactions.csv')
+parser('/Users/n0199601/Downloads/transactions (9).csv')
 .then(data => {
-  console.info(data.length);
-  console.info(removeTransfers(data).length);
+  checkForEvenTransferBalance(data);
+  checkForEvenCreditCardPaymentBalance(data);
+  const filteredData = filter(data);
+  console.info(filteredData.length);
 })
 .catch(error => {
   console.error(error);
