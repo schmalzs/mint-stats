@@ -78,6 +78,16 @@ const data = [{
   "Account Name": "Checking",
   "Labels": "",
   "Notes": ""
+}, {
+  "Date": "8/10/17",
+  "Description": "IRA Contribution",
+  "Original Description": "Investment Co.",
+  "Amount": "1000",
+  "Transaction Type": "debit",
+  "Category": "Investment Transfer",
+  "Account Name": "Checking",
+  "Labels": "",
+  "Notes": ""
 }];
 
 export const dataWithEvenTransferBalance = data.concat([{

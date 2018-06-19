@@ -6,4 +6,6 @@ const removeCreditCardPayments = data => data.filter(item => item.Category.toUpp
 
 const removeInvestments = data => data.filter(item => item.Category.toUpperCase() !== 'INVESTMENTS');
 
-export default data => removeInvestments(removeCreditCardPayments(removeTransfers(removeTransactionsWithAmountOfZero(data))));
+const removeInvestmentTransfers = data => data.filter(item => item.Category.toUpperCase() !== 'INVESTMENT TRANSFER');
+
+export default data => removeInvestmentTransfers(removeInvestments(removeCreditCardPayments(removeTransfers(removeTransactionsWithAmountOfZero(data)))));

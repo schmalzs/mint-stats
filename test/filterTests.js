@@ -22,6 +22,11 @@ describe('filter', () => {
     expect(result.map(item => item.Category.toUpperCase())).not.to.include('INVESTMENTS');
   });
 
+  it('removes investment transfers', () => {
+    const result = filter(data);
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include('INVESTMENT TRANSFER');
+  });
+
   it('retains transactions that should not be filtered', () => {
     const result = filter(data);
     expect(result).to.not.be.empty;
