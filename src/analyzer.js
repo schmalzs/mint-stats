@@ -1,4 +1,4 @@
-const isBalanceEven = (category, data) => {
+const getBalance = (category, data) => {
   const balance = data
     .filter(transaction => transaction.Category.toUpperCase() === category.toUpperCase())
     .map(transaction => {
@@ -10,20 +10,22 @@ const isBalanceEven = (category, data) => {
     })
     .reduce((accumulator, amount) => accumulator + parseFloat(amount), 0);
 
-  return balance === 0;
+  return balance;
 };
 
 export const checkForEvenTransferBalance = (data) => {
-  if (!isBalanceEven('Transfer', data)) {
-    console.warn('The net amount of transactions with type "Transfer" is not balanced!');
+  const balance = getBalance('Transfer', data);
+  if (balance !== 0) {
+    console.warn(`The net amount of transactions with type "Transfer" is not balanced! [${balance}]`);
   }
 
   return data;
 };
 
 export const checkForEvenCreditCardPaymentBalance = (data) => {
-  if (!isBalanceEven('Credit Card Payment', data)) {
-    console.warn('The net amount of transactions with type "Credit Card Payment" is not balanced!');
+  const balance = getBalance('Credit Card Payment', data);
+  if (balance !== 0) {
+    console.warn(`The net amount of transactions with type "Credit Card Payment" is not balanced! [${balance}]`);
   }
 
   return data;
