@@ -1,5 +1,13 @@
 # Mint Stats
 
+### Building
+
 ```
-node dist/index --input ~/Downloads/transactions.csv --output ~/Desktop/output.csv
+$ yarn build
+```
+
+### Running
+
+```
+$ node dist/index --input ~/Downloads/transactions.csv --output ~/Desktop/output.csv
 ```
