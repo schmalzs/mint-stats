@@ -1,28 +1,18 @@
-const removeTransactionsWithAmountOfZero = data =>
-  data.filter(item => parseFloat(item.Amount) !== 0);
+import { flow } from 'lodash';
 
-const removeTransfers = data =>
-  data.filter(item => item.Category.toUpperCase() !== 'TRANSFER');
+const filterCategories = (categories = []) => (data = []) =>
+  data.filter(item => !categories.includes(item.Category.toUpperCase()));
 
-const removeTransfersToShared = data =>
-  data.filter(item => item.Category.toUpperCase() !== 'TRANSFER TO SHARED');
+const filterAmount = amount => (data = []) =>
+  data.filter(item => parseFloat(item.Amount) !== amount);
 
-const removeCreditCardPayments = data =>
-  data.filter(item => item.Category.toUpperCase() !== 'CREDIT CARD PAYMENT');
-
-const removeInvestments = data =>
-  data.filter(item => item.Category.toUpperCase() !== 'INVESTMENTS');
-
-const removeInvestmentTransfers = data =>
-  data.filter(item => item.Category.toUpperCase() !== 'INVESTMENT TRANSFER');
-
-export default data =>
-  removeInvestmentTransfers(
-    removeInvestments(
-      removeCreditCardPayments(
-        removeTransfers(
-          removeTransactionsWithAmountOfZero(removeTransfersToShared(data))
-        )
-      )
-    )
-  );
+export default flow([
+  filterCategories([
+    'TRANSFER',
+    'TRANSFER TO SHARED',
+    'INVESTMENT TRANSFER',
+    'INVESTMENTS',
+    'CREDIT CARD PAYMENT'
+  ]),
+  filterAmount(0)
+]);
