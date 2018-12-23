@@ -1,18 +1,18 @@
 import csv from 'csvtojson';
 
-const parse = (filename) => {
-  return new Promise((resolve, reject) => {
+const parse = filename =>
+  new Promise((resolve, reject) => {
     const data = [];
 
-    csv().fromFile(filename)
-    .on('json', jsonObj => data.push(jsonObj))
-    .on('done', error => {
-      if (error) {
-        reject(error);
-      }
-      resolve(data);
-    });
+    csv()
+      .fromFile(filename)
+      .on('json', jsonObj => data.push(jsonObj))
+      .on('done', error => {
+        if (error) {
+          reject(error);
+        }
+        resolve(data);
+      });
   });
-};
 
 export default parse;

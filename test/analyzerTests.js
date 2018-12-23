@@ -1,11 +1,14 @@
-import chai from 'chai';
+import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import {
   checkForEvenTransferBalance,
-  checkForEvenCreditCardPaymentBalance,
+  checkForEvenCreditCardPaymentBalance
 } from 'analyzer';
-import data, { dataWithEvenTransferBalance, dataWithEvenCreditCardPaymentBalance } from './data';
+import data, {
+  dataWithEvenTransferBalance,
+  dataWithEvenCreditCardPaymentBalance
+} from './data';
 
 chai.use(sinonChai);
 
@@ -33,7 +36,7 @@ describe('analyzer', () => {
       });
     });
 
-    it ('returns the same set of data that it was provided', () => {
+    it('returns the same set of data that it was provided', () => {
       const result = checkForEvenTransferBalance(data);
       expect(result).to.deep.equal(data);
     });
@@ -49,12 +52,14 @@ describe('analyzer', () => {
 
     describe('when the net total amount is 0', () => {
       it('does not provide a warning', () => {
-        checkForEvenCreditCardPaymentBalance(dataWithEvenCreditCardPaymentBalance);
+        checkForEvenCreditCardPaymentBalance(
+          dataWithEvenCreditCardPaymentBalance
+        );
         expect(consoleWarnSpy).not.to.have.been.called;
       });
     });
 
-    it ('returns the same set of data that it was provided', () => {
+    it('returns the same set of data that it was provided', () => {
       const result = checkForEvenCreditCardPaymentBalance(data);
       expect(result).to.deep.equal(data);
     });

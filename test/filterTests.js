@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import filter from 'filter';
 import data from './data';
 
@@ -9,22 +10,30 @@ describe('filter', () => {
 
   it('removes transfers', () => {
     const result = filter(data);
-    expect(result.map(item => item.Category.toUpperCase())).not.to.include('TRANSFER');
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include(
+      'TRANSFER'
+    );
   });
 
   it('removes credit card payments', () => {
     const result = filter(data);
-    expect(result.map(item => item.Category.toUpperCase())).not.to.include('CREDIT CARD PAYMENT');
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include(
+      'CREDIT CARD PAYMENT'
+    );
   });
 
   it('removes investments', () => {
     const result = filter(data);
-    expect(result.map(item => item.Category.toUpperCase())).not.to.include('INVESTMENTS');
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include(
+      'INVESTMENTS'
+    );
   });
 
   it('removes investment transfers', () => {
     const result = filter(data);
-    expect(result.map(item => item.Category.toUpperCase())).not.to.include('INVESTMENT TRANSFER');
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include(
+      'INVESTMENT TRANSFER'
+    );
   });
 
   it('retains transactions that should not be filtered', () => {

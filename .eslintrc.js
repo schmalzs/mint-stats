@@ -5,6 +5,12 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   rules: {
+    'no-console': 'off',
     'prettier/prettier': ['error', { singleQuote: true }]
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': {}
+    }
   }
 };

@@ -5,7 +5,7 @@ import jsonexport from 'jsonexport';
 import filter from 'filter';
 import {
   checkForEvenTransferBalance,
-  checkForEvenCreditCardPaymentBalance,
+  checkForEvenCreditCardPaymentBalance
 } from 'analyzer';
 
 const INPUT_FILE = argv.input;
@@ -23,12 +23,15 @@ parser(INPUT_FILE)
 
     console.info(`${filteredData.length} records remaining`);
 
-    jsonexport(filteredData, (err, csv) => {
-      if (err) return console.log(err);
-      fs.writeFile(OUTPUT_FILE, csv, (err) => {
-        if (err) throw err;
-        console.log('file saved');
-      });
+    jsonexport(filteredData, (exportErr, csv) => {
+      if (exportErr) {
+        console.log(exportErr);
+      } else {
+        fs.writeFile(OUTPUT_FILE, csv, writeErr => {
+          if (writeErr) throw writeErr;
+          console.log('file saved');
+        });
+      }
     });
   })
   .catch(error => console.error(error));
