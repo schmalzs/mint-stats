@@ -19,22 +19,12 @@ const getBalance = (category, data) => {
   return balance;
 };
 
-export const checkForEvenTransferBalance = data => {
-  const balance = getBalance('Transfer', data);
+export const checkForEvenBalance = category => (data = []) => {
+  const balance = getBalance(category, data);
+
   if (balance !== 0) {
     logger.warn(
-      `The net amount of transactions with type "Transfer" is not balanced! [${balance}]`
-    );
-  }
-
-  return data;
-};
-
-export const checkForEvenCreditCardPaymentBalance = data => {
-  const balance = getBalance('Credit Card Payment', data);
-  if (balance !== 0) {
-    logger.warn(
-      `The net amount of transactions with type "Credit Card Payment" is not balanced! [${balance}]`
+      `The net amount of transactions with type "${category}" is not balanced! [${balance}]`
     );
   }
 
@@ -42,6 +32,6 @@ export const checkForEvenCreditCardPaymentBalance = data => {
 };
 
 export default flow([
-  checkForEvenTransferBalance,
-  checkForEvenCreditCardPaymentBalance
+  checkForEvenBalance('Transfer'),
+  checkForEvenBalance('Credit Card Payment')
 ]);

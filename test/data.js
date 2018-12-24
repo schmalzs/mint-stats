@@ -115,18 +115,4 @@ export const dataWithEvenTransferBalance = data.concat([
   }
 ]);
 
-export const dataWithEvenCreditCardPaymentBalance = data.concat([
-  {
-    Date: '10/3/2014',
-    Description: 'Thank You Web',
-    'Original Description': 'Payment Thank You - Web',
-    Amount: '23.00',
-    'Transaction Type': 'credit',
-    Category: 'Credit Card Payment',
-    'Account Name': 'CHASE FREEDOM SIGNATURE',
-    Labels: '',
-    Notes: ''
-  }
-]);
-
 export default data;
