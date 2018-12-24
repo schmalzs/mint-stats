@@ -1,37 +1,35 @@
 import { argv } from 'yargs';
-import fs from 'fs';
-import parser from 'csvParser';
-import jsonexport from 'jsonexport';
+import * as logger from 'logger';
+import importData from 'dataImporter';
+import exportData from 'dataExporter';
+import analyze from 'analyzer';
 import filter from 'filter';
-import {
-  checkForEvenTransferBalance,
-  checkForEvenCreditCardPaymentBalance
-} from 'analyzer';
 
-const INPUT_FILE = argv.input;
-const OUTPUT_FILE = argv.output;
+const { input: INPUT_FILE, output: OUTPUT_FILE } = argv;
 
-console.info(`Parsing file : ${INPUT_FILE}`);
+if (!INPUT_FILE || !OUTPUT_FILE) {
+  logger.error('Missing "input" and/or "output" filename');
+  process.exit(1);
+}
 
-parser(INPUT_FILE)
+logger.info(`Parsing: ${INPUT_FILE}`);
+
+importData(INPUT_FILE)
   .then(data => {
-    console.info(`${data.length} unfiltered records`);
-
-    checkForEvenTransferBalance(data);
-    checkForEvenCreditCardPaymentBalance(data);
-    const filteredData = filter(data);
-
-    console.info(`${filteredData.length} records remaining`);
-
-    jsonexport(filteredData, (exportErr, csv) => {
-      if (exportErr) {
-        console.log(exportErr);
-      } else {
-        fs.writeFile(OUTPUT_FILE, csv, writeErr => {
-          if (writeErr) throw writeErr;
-          console.log('file saved');
-        });
-      }
-    });
+    logger.info(`${data.length} unfiltered records`);
+    return data;
   })
-  .catch(error => console.error(error));
+  .then(analyze)
+  .then(filter)
+  .then(data => {
+    logger.info(`${data.length} records remaining`);
+    return data;
+  })
+  .then(data => {
+    exportData(data, OUTPUT_FILE);
+  })
+  .then(() => logger.success('File saved!'))
+  .catch(error => {
+    logger.error(error);
+    process.exit(1);
+  });

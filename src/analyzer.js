@@ -1,3 +1,6 @@
+import { flow } from 'lodash';
+import * as logger from 'logger';
+
 const getBalance = (category, data) => {
   const balance = data
     .filter(
@@ -19,7 +22,7 @@ const getBalance = (category, data) => {
 export const checkForEvenTransferBalance = data => {
   const balance = getBalance('Transfer', data);
   if (balance !== 0) {
-    console.warn(
+    logger.warn(
       `The net amount of transactions with type "Transfer" is not balanced! [${balance}]`
     );
   }
@@ -30,10 +33,15 @@ export const checkForEvenTransferBalance = data => {
 export const checkForEvenCreditCardPaymentBalance = data => {
   const balance = getBalance('Credit Card Payment', data);
   if (balance !== 0) {
-    console.warn(
+    logger.warn(
       `The net amount of transactions with type "Credit Card Payment" is not balanced! [${balance}]`
     );
   }
 
   return data;
 };
+
+export default flow([
+  checkForEvenTransferBalance,
+  checkForEvenCreditCardPaymentBalance
+]);
