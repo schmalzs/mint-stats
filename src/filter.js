@@ -12,7 +12,8 @@ export default flow([
     'TRANSFER TO SHARED',
     'INVESTMENT TRANSFER',
     'INVESTMENTS',
-    'CREDIT CARD PAYMENT'
+    'CREDIT CARD PAYMENT',
+    'HIDE FROM BUDGETS & TRENDS'
   ]),
   filterAmount(0)
 ]);
