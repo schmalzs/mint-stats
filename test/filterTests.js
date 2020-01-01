@@ -36,6 +36,13 @@ describe('filter', () => {
     );
   });
 
+  it('removes kate to shared transfers', () => {
+    const result = filter(data);
+    expect(result.map(item => item.Category.toUpperCase())).not.to.include(
+      'KATE TO SHARED'
+    );
+  });
+
   it('retains transactions that should not be filtered', () => {
     const result = filter(data);
     expect(result).to.not.be.empty;
