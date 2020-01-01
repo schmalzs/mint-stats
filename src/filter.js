@@ -13,7 +13,8 @@ export default flow([
     'INVESTMENT TRANSFER',
     'INVESTMENTS',
     'CREDIT CARD PAYMENT',
-    'HIDE FROM BUDGETS & TRENDS'
+    'HIDE FROM BUDGETS & TRENDS',
+    'KATE TO SHARED'
   ]),
   filterAmount(0)
 ]);
